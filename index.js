@@ -1,5 +1,5 @@
 /**
- *   This file is part of wald:find - a library for querying RDF.
+ *   This file is part of zbase32.
  *   Copyright (C) 2016  Kuno Woudt <kuno@frob.nl>
  *
  *   This program is free software: you can redistribute it and/or modify
