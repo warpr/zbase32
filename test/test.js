@@ -13,6 +13,7 @@
         'require',
         'chai',
         'text-encoding',
+        'jsverify',
         '../index',
     ];
 
@@ -28,6 +29,7 @@
     const zbase32 = require ('../index');
     const TextDecoder = require ('text-encoding').TextDecoder;
     const TextEncoder = require ('text-encoding').TextEncoder;
+    const jsverify = require ('jsverify');
 
     function toUTF8 (str) {
         return new TextEncoder ('utf-8').encode (str);
@@ -83,6 +85,29 @@
 
         test ('decoding', function () {
             assert.equal (fromUTF8 (zbase32.decode ('pb1sa5dx')), 'hello');
+        });
+
+        test ('roundtrip', function () {
+            const roundTrip = jsverify.forall ('string', (testString) => {
+                const encoded = zbase32.encode (toUTF8 (testString));
+                return testString === fromUTF8 (zbase32.decode (encoded));
+            });
+
+            // FIXME: size is the max size of each generated random value,
+            // it doesn't increase the test string size significantly.
+            // See also:
+            // - https://github.com/jsverify/jsverify/issues/167
+            // - https://github.com/jsverify/jsverify/issues/169
+            jsverify.assert (roundTrip, { size: Number.MAX_SAFE_INTEGER });
+        });
+
+        test ('valid zbase32', function () {
+            const valid = jsverify.forall ('string', (testString) => {
+                const encoded = zbase32.encode (toUTF8 (testString));
+                return /^[13456789abcdefghijkmnopqrstuwxyz]*$/.test (encoded);
+            });
+
+            jsverify.assert (valid, { size: Number.MAX_SAFE_INTEGER });
         });
     });
 }));
