@@ -1,0 +1,29 @@
+{
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+    },
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "rules": {
+        "consistent-this": ["warn", "self"],
+        "max-len": ["warn", 96, 4],
+        "no-comma-dangle": "off",
+        "no-lonely-if": "warn",
+        "no-nested-ternary": "warn",
+        "no-spaced-func": "off",
+        "no-underscore-dangle": "off",
+        "no-unused-vars": ["warn", {"vars": "all", "args": "none"} ],
+        "quote-props": ["warn", "as-needed"],
+        "quotes": ["warn", "single"],
+        "space-before-function-paren": ["warn", "always"],
+        "keyword-spacing": ["warn", { "before": true, "after": true }],
+        "space-before-blocks": ["warn", "always"],
+        "spaced-func": "warn",
+        "space-in-parens": ["warn", "never"]
+    }
+}

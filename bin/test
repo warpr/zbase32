@@ -1,0 +1,16 @@
+#!/bin/bash
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+cd "$DIR/.."
+
+ESLINT="node_modules/.bin/eslint --rulesdir eslint_rules index.js test"
+MOCHA="node_modules/mocha/bin/mocha --harmony --harmony-proxies --ui tdd --reporter spec test/test.js"
+
+export NODE_PATH="$DIR/../lib/"
+echo node path: $NODE_PATH
+
+$ESLINT && $MOCHA
+

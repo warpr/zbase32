@@ -1,0 +1,19 @@
+{
+  "name": "zbase32",
+  "version": "0.0.1",
+  "description": "z-base-32 encoding/decoding library",
+  "main": "index.js",
+  "scripts": {
+    "test": "bin/test"
+  },
+  "author": "Kuno Woudt <kuno@frob.nl>",
+  "license": "copyleft-next-0.3.1",
+  "repository": "https://gitlab.com/wald-meta/zbase32.git",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.0.1",
+    "mocha": "^2.5.3",
+    "text-encoding": "^0.6.0"
+  }
+}
