@@ -1,8 +1,24 @@
-
 zbase32
 =======
 
-https://en.wikipedia.org/wiki/Base32#z-base-32
+This zbase32 library encodes ArrayBuffers to zbase32 encoded strings and back.
+
+If you want to encode strings you'll have to convert them to ArrayBuffers, you
+can use the [TextEncoder](https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder)
+API or a [polyfill](https://www.npmjs.com/package/text-encoding).
+
+Example
+-------
+
+```javascript
+const zbase32 = require ('zbase32'):
+
+zbase32.encode (new TextEncoder ('utf-8').encode ('hello'));
+// => 'pb1sa5dx'
+
+new TextDecoder ('utf-8').decode (zbase32.decode ('pb1sa5dx'));
+// => 'hello'
+```
 
 License
 =======
