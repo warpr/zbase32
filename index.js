@@ -27,6 +27,11 @@
         MNET32Reverse[MNET32[i]] = i;
     }
 
+    function IntegerTooLargeException (message) {
+        this.message = message;
+        this.name = 'IntegerTooLargeException';
+    }
+
     function getBit (byte, offset) {
         return (byte >> offset) & 0x01;
     }
@@ -77,6 +82,45 @@
         return new Uint8Array (bytes);
     }
 
+    function toNumber (ab) {
+        return (ab[0] << 30
+              | ab[1] << 25
+              | ab[2] << 20
+              | ab[3] << 15
+              | ab[4] << 10
+              | ab[5] << 5
+              | ab[6]
+        );
+    }
+
+    function fromNumber (num) {
+        if (num < 0 || num > 0x7FFFFFFF) {
+            throw new IntegerTooLargeException ('fromNumber expects a 32-bit signed integer');
+        }
+
+        // Although javascript Numbers can safely represent integers up to (2^53)-1, the
+        // bitwise operators operate on them as 32-bit signed integers.
+        // FIXME: look for a popular bigint library which can easily convert big integers as
+        // ArrayBuffers.
+        return new Uint8Array ([
+            (num >>> 30) & 0x03,
+            (num >>> 25) & 0x1f,
+            (num >>> 20) & 0x1f,
+            (num >>> 15) & 0x1f,
+            (num >>> 10) & 0x1f,
+            (num >>>  5) & 0x1f,
+            (num >>>  0) & 0x1f
+        ]);
+    }
+
+    function decode32bitNumber (str) {
+        return toNumber (decode (str));
+    }
+
+    function encode32bitNumber (int) {
+        return encode (fromNumber (int));
+    }
+
     function decode (x) {
         return from5bit (x.split ('').map ((chr) => MNET32Reverse[chr]));
     }
@@ -90,5 +134,9 @@
         encode: encode,
         from5bit: from5bit,
         to5bit: to5bit,
+        fromNumber: fromNumber,
+        toNumber: toNumber,
+        decode32bitNumber: decode32bitNumber,
+        encode32bitNumber: encode32bitNumber,
     };
 }));

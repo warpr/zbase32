@@ -109,6 +109,46 @@
 
             jsverify.assert (valid, { size: Number.MAX_SAFE_INTEGER });
         });
+
+        test ('fromNumber', function () {
+            // 11 00000 11111 00000 11111 00000 11111
+            const expected = [1, 0, 0x1f, 0, 0x1f, 0, 0x1f];
+            const buf = zbase32.fromNumber (0x41F07C1F);
+            assert.deepEqual (expected, [].slice.call (buf));
+        });
+
+        test ('toNumber', function () {
+            const num = zbase32.toNumber ([1, 0, 0x1f, 0, 0x1f, 0, 0x1f]);
+            assert.equal (0x41F07C1F, num);
+        });
+
+        test ('encode number', function () {
+            assert.equal (zbase32.encode32bitNumber (0), 'yyyyyyyyyyyy');
+            assert.equal (zbase32.encode32bitNumber (23), 'yyyyyyyyyyyz');
+            assert.equal (zbase32.encode32bitNumber (0x7FFFFFFF), 'yye9dhxt68a9');
+            assert.equal (zbase32.encode32bitNumber (0xFFFF), 'yyyyyyyt68a9');
+        });
+
+        test ('decode number', function () {
+            assert.equal (zbase32.decode32bitNumber ('yyyyyyyyyyyy'), 0);
+            assert.equal (zbase32.decode32bitNumber ('yyyyyyyyyyyz'), 23);
+            assert.equal (zbase32.decode32bitNumber ('yye9dhxt68a9'), 0x7FFFFFFF);
+            assert.equal (zbase32.decode32bitNumber ('yyyyyyyt68a9'), 0xFFFF);
+        });
+
+        test ('number roundtrip', function () {
+            const roundTrip = jsverify.forall ('string', (testString) => {
+                const encoded = zbase32.encode (toUTF8 (testString));
+                return testString === fromUTF8 (zbase32.decode (encoded));
+            });
+
+            // FIXME: size is the max size of each generated random value,
+            // it doesn't increase the test string size significantly.
+            // See also:
+            // - https://github.com/jsverify/jsverify/issues/167
+            // - https://github.com/jsverify/jsverify/issues/169
+            jsverify.assert (roundTrip, { size: Number.MAX_SAFE_INTEGER });
+        });
     });
 }));
 
