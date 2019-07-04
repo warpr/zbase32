@@ -1,6 +1,6 @@
 {
   "name": "zbase32",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "z-base-32 encoding/decoding library",
   "main": "index.js",
   "scripts": {
@@ -9,12 +9,25 @@
   "author": "Kuno Woudt <kuno@frob.nl>",
   "license": "copyleft-next-0.3.1",
   "repository": "https://gitlab.com/kuno/zbase32.git",
-    "dependencies": {},
-    "devDependencies": {
-        "chai": "^3.5.0",
-        "eslint": "^3.0.1",
-        "jsverify": "^0.7.1",
-        "mocha": "^2.5.3",
-        "text-encoding": "^0.6.0"
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "husky": "^3.0.0",
+    "jsverify": "^0.7.1",
+    "lint-staged": "^9.0.2",
+    "mocha": "^2.5.3",
+    "prettier": "^1.18.2",
+    "text-encoding": "^0.6.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }
