@@ -1,33 +1,33 @@
 {
-  "name": "zbase32",
-  "version": "1.0.0",
-  "description": "z-base-32 encoding/decoding library",
-  "main": "index.js",
-  "scripts": {
-    "test": "bin/test"
-  },
-  "author": "Kuno Woudt <kuno@frob.nl>",
-  "license": "copyleft-next-0.3.1",
-  "repository": "https://gitlab.com/kuno/zbase32.git",
-  "dependencies": {},
-  "devDependencies": {
-    "chai": "^4.2.0",
-    "husky": "^2.6.0",
-    "jsverify": "^0.8.4",
-    "lint-staged": "^9.0.2",
-    "mocha": "^6.1.4",
-    "prettier": "^1.18.2",
-    "text-encoding": "^0.7.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+    "name": "zbase32",
+    "version": "1.0.0",
+    "description": "z-base-32 encoding/decoding library",
+    "main": "index.js",
+    "scripts": {
+        "test": "bin/test"
+    },
+    "author": "Kuno Woudt <kuno@frob.nl>",
+    "license": "copyleft-next-0.3.1",
+    "repository": "https://gitlab.com/kuno/zbase32.git",
+    "dependencies": {},
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "husky": "^2.6.0",
+        "jsverify": "^0.8.4",
+        "lint-staged": "^9.0.2",
+        "mocha": "^6.1.4",
+        "text-encoding": "^0.7.0",
+        "prettier": "^1.18.2"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{js,css,json,md}": [
+            "prettier --write",
+            "git add"
+        ]
     }
-  },
-  "lint-staged": {
-    "*.{js,css,json,md}": [
-      "prettier --write",
-      "git add"
-    ]
-  }
 }
