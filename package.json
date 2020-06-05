@@ -12,11 +12,11 @@
     "dependencies": {},
     "devDependencies": {
         "chai": "^4.2.0",
-        "husky": "^2.6.0",
+        "husky": "^4.2.5",
         "jsverify": "^0.8.4",
-        "lint-staged": "^9.0.2",
-        "mocha": "^6.2.0",
-        "prettier": "^1.18.2",
+        "lint-staged": "^10.2.9",
+        "mocha": "^7.2.0",
+        "prettier": "^2.0.5",
         "text-encoding": "^0.7.0"
     },
     "husky": {
@@ -26,8 +26,7 @@
     },
     "lint-staged": {
         "*.{js,css,json,md}": [
-            "prettier --write",
-            "git add"
+            "prettier --write"
         ]
     }
 }

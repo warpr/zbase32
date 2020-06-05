@@ -8,7 +8,7 @@
 
 'use strict';
 
-(function(factory) {
+(function (factory) {
     const imports = ['require'];
 
     if (typeof define === 'function' && define.amd) {
@@ -18,7 +18,7 @@
     } else {
         console.log('Module system not recognized, please use AMD or CommonJS');
     }
-})(function(require) {
+})(function (require) {
     const MNET32 = 'ybndrfg8ejkmcpqxot1uwisza345h769';
     const MNET32Reverse = {};
     for (let i = 0; i < MNET32.length; i++) {
@@ -121,12 +121,12 @@
     }
 
     function decode(x) {
-        return from5bit(x.split('').map(chr => MNET32Reverse[chr]));
+        return from5bit(x.split('').map((chr) => MNET32Reverse[chr]));
     }
 
     function encode(x) {
         return to5bit(x)
-            .map(value => MNET32[value])
+            .map((value) => MNET32[value])
             .join('');
     }
 
