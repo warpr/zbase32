@@ -3,6 +3,7 @@
     "version": "1.0.3",
     "description": "z-base-32 encoding/decoding library",
     "main": "index.js",
+    "typings": "index.d.ts",
     "scripts": {
         "test": "bin/test"
     },
