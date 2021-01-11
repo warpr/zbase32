@@ -8,7 +8,7 @@
 
 'use strict';
 
-(function(factory) {
+(function (factory) {
     const imports = ['require', 'chai', 'text-encoding', 'jsverify', '../index'];
 
     if (typeof define === 'function' && define.amd) {
@@ -18,7 +18,7 @@
     } else {
         console.log('Module system not recognized, please use AMD or CommonJS');
     }
-})(function(require) {
+})(function (require) {
     const assert = require('chai').assert;
     const zbase32 = require('../index');
     const TextDecoder = require('text-encoding').TextDecoder;
@@ -33,8 +33,8 @@
         return new TextDecoder('utf-8').decode(arrayBuffer);
     }
 
-    suite('zbase32', function() {
-        test('to5bit', function() {
+    suite('zbase32', function () {
+        test('to5bit', function () {
             //  H 0x48   e 0x65   l 0x6c   l 0x6c   o 0x6f
             // 01001000 01100101 01101100 01101100 01101111
             //
@@ -56,7 +56,7 @@
             assert.deepEqual(zbase32.to5bit(toUTF8('o')), expected);
         });
 
-        test('from5bit', function() {
+        test('from5bit', function () {
             let input = [0x09, 0x01, 0x12, 0x16, 0x18, 0x1b, 0x03, 0x0f];
             assert.equal(fromUTF8(zbase32.from5bit(input)), 'Hello');
 
@@ -73,16 +73,16 @@
             assert.equal(fromUTF8(zbase32.from5bit(input)), 'o');
         });
 
-        test('encoding', function() {
+        test('encoding', function () {
             assert.equal(zbase32.encode(toUTF8('hello')), 'pb1sa5dx');
         });
 
-        test('decoding', function() {
+        test('decoding', function () {
             assert.equal(fromUTF8(zbase32.decode('pb1sa5dx')), 'hello');
         });
 
-        test('roundtrip', function() {
-            const roundTrip = jsverify.forall('string', testString => {
+        test('roundtrip', function () {
+            const roundTrip = jsverify.forall('string', (testString) => {
                 const encoded = zbase32.encode(toUTF8(testString));
                 return testString === fromUTF8(zbase32.decode(encoded));
             });
@@ -95,8 +95,8 @@
             jsverify.assert(roundTrip, { size: Number.MAX_SAFE_INTEGER });
         });
 
-        test('valid zbase32', function() {
-            const valid = jsverify.forall('string', testString => {
+        test('valid zbase32', function () {
+            const valid = jsverify.forall('string', (testString) => {
                 const encoded = zbase32.encode(toUTF8(testString));
                 return /^[13456789abcdefghijkmnopqrstuwxyz]*$/.test(encoded);
             });
@@ -104,34 +104,34 @@
             jsverify.assert(valid, { size: Number.MAX_SAFE_INTEGER });
         });
 
-        test('fromNumber', function() {
+        test('fromNumber', function () {
             // 11 00000 11111 00000 11111 00000 11111
             const expected = [1, 0, 0x1f, 0, 0x1f, 0, 0x1f];
             const buf = zbase32.fromNumber(0x41f07c1f);
             assert.deepEqual(expected, [].slice.call(buf));
         });
 
-        test('toNumber', function() {
+        test('toNumber', function () {
             const num = zbase32.toNumber([1, 0, 0x1f, 0, 0x1f, 0, 0x1f]);
             assert.equal(0x41f07c1f, num);
         });
 
-        test('encode number', function() {
+        test('encode number', function () {
             assert.equal(zbase32.encode32bitNumber(0), 'yyyyyyyyyyyy');
             assert.equal(zbase32.encode32bitNumber(23), 'yyyyyyyyyyyz');
             assert.equal(zbase32.encode32bitNumber(0x7fffffff), 'yye9dhxt68a9');
             assert.equal(zbase32.encode32bitNumber(0xffff), 'yyyyyyyt68a9');
         });
 
-        test('decode number', function() {
+        test('decode number', function () {
             assert.equal(zbase32.decode32bitNumber('yyyyyyyyyyyy'), 0);
             assert.equal(zbase32.decode32bitNumber('yyyyyyyyyyyz'), 23);
             assert.equal(zbase32.decode32bitNumber('yye9dhxt68a9'), 0x7fffffff);
             assert.equal(zbase32.decode32bitNumber('yyyyyyyt68a9'), 0xffff);
         });
 
-        test('number roundtrip', function() {
-            const roundTrip = jsverify.forall('string', testString => {
+        test('number roundtrip', function () {
+            const roundTrip = jsverify.forall('string', (testString) => {
                 const encoded = zbase32.encode(toUTF8(testString));
                 return testString === fromUTF8(zbase32.decode(encoded));
             });
