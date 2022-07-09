@@ -1,6 +1,6 @@
 {
     "name": "zbase32",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "z-base-32 encoding/decoding library",
     "main": "index.js",
     "typings": "index.d.ts",
@@ -12,12 +12,12 @@
     "repository": "https://github.com/warpr/zbase32.git",
     "dependencies": {},
     "devDependencies": {
-        "chai": "^4.2.0",
-        "husky": "^4.3.7",
+        "chai": "^4.3.6",
+        "husky": "^8.0.1",
         "jsverify": "^0.8.4",
-        "lint-staged": "^10.5.3",
-        "mocha": "^7.2.0",
-        "prettier": "^2.2.1",
+        "lint-staged": "^13.0.3",
+        "mocha": "^10.0.0",
+        "prettier": "^2.7.1",
         "text-encoding": "^0.7.0"
     },
     "husky": {

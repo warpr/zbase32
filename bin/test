@@ -6,10 +6,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 cd "$DIR/.."
 
-MOCHA="node_modules/mocha/bin/mocha --ui tdd --reporter spec test/test.js"
-
 export NODE_PATH="$DIR/../lib/"
 echo node path: $NODE_PATH
 
-$MOCHA
-
+npx mocha --ui tdd --reporter spec test/test.js
