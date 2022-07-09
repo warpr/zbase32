@@ -13,10 +13,10 @@ Example
 ```javascript
 import zbase32 from 'zbase32';
 
-zbase32.encode (new TextEncoder ('utf-8').encode ('hello'));
+zbase32.encode(new TextEncoder('utf-8').encode('hello'));
 // => 'pb1sa5dx'
 
-new TextDecoder ('utf-8').decode (zbase32.decode ('pb1sa5dx'));
+new TextDecoder('utf-8').decode(zbase32.decode('pb1sa5dx'));
 // => 'hello'
 ```
 
