@@ -11,7 +11,7 @@ Example
 -------
 
 ```javascript
-const zbase32 = require ('zbase32'):
+import zbase32 from 'zbase32';
 
 zbase32.encode (new TextEncoder ('utf-8').encode ('hello'));
 // => 'pb1sa5dx'
