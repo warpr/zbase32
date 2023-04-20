@@ -1,6 +1,6 @@
 {
     "name": "zbase32",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "description": "z-base-32 encoding/decoding library",
     "main": "index.js",
     "typings": "index.d.ts",
@@ -18,8 +18,7 @@
         "jsverify": "^0.8.4",
         "lint-staged": "^13.0.3",
         "mocha": "^10.0.0",
-        "prettier": "^2.7.1",
-        "text-encoding": "^0.7.0"
+        "prettier": "^2.7.1"
     },
     "husky": {
         "hooks": {

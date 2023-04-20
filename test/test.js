@@ -9,16 +9,15 @@
 'use strict';
 
 import { assert } from 'chai';
-import text_encoding from 'text-encoding';
 import jsverify from 'jsverify';
 import zbase32 from '../index.js';
 
 function toUTF8(str) {
-    return new text_encoding.TextEncoder('utf-8').encode(str);
+    return new TextEncoder('utf-8').encode(str);
 }
 
 function fromUTF8(arrayBuffer) {
-    return new text_encoding.TextDecoder('utf-8').decode(arrayBuffer);
+    return new TextDecoder('utf-8').decode(arrayBuffer);
 }
 
 suite('zbase32', function () {
