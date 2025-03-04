@@ -1,6 +1,6 @@
 {
     "name": "zbase32",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "description": "z-base-32 encoding/decoding library",
     "main": "index.js",
     "typings": "index.d.ts",
@@ -10,7 +10,10 @@
     "type": "module",
     "author": "Kuno Woudt <kuno@frob.nl>",
     "license": "copyleft-next-0.3.1",
-    "repository": "https://github.com/warpr/zbase32.git",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/warpr/zbase32.git"
+    },
     "dependencies": {},
     "devDependencies": {
         "chai": "^4.3.6",
