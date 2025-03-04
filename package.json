@@ -1,6 +1,6 @@
 {
     "name": "zbase32",
-    "version": "2.0.5",
+    "version": "2.0.6",
     "description": "z-base-32 encoding/decoding library",
     "main": "index.js",
     "typings": "index.d.ts",
