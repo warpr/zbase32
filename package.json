@@ -1,11 +1,12 @@
 {
     "name": "zbase32",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "description": "z-base-32 encoding/decoding library",
     "main": "index.js",
     "typings": "index.d.ts",
     "scripts": {
-        "test": "bin/test"
+        "test": "bin/test",
+        "postinstall": "git config --local core.hooksPath etc/hooks"
     },
     "type": "module",
     "author": "Kuno Woudt <kuno@frob.nl>",
@@ -14,19 +15,12 @@
         "type": "git",
         "url": "git+https://github.com/warpr/zbase32.git"
     },
-    "dependencies": {},
     "devDependencies": {
-        "chai": "^4.3.6",
-        "husky": "^8.0.1",
+        "chai": "^5.2.0",
         "jsverify": "^0.8.4",
-        "lint-staged": "^13.0.3",
-        "mocha": "^10.0.0",
-        "prettier": "^2.7.1"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
+        "lint-staged": "^15.4.3",
+        "mocha": "^11.1.0",
+        "prettier": "^3.5.3"
     },
     "lint-staged": {
         "*.{js,css,json,md}": [
