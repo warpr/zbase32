@@ -18,6 +18,18 @@ new TextDecoder('utf-8').decode(zbase32.decode('pb1sa5dx'));
 // => 'hello'
 ```
 
+## Provenance
+
+Some notes on releasing a new version, as I do this infrequently enough that I forget :)
+
+1. Go to NPM -> user menu -> access tokens
+2. Create a granular access token for GitHub actions, with read/write access to zbase32
+3. Go to https://github.com/warpr/zbase32/settings -> Secrets and variables
+4. Update the NPM_TOKEN environment variable to the newly created token
+5. Push the version you want to publish to GitHub
+6. At https://github.com/warpr/zbase32/releases create a new release
+7. The publish action should now run automatically, which should publish the new version to npm and log the provenance info
+
 # License
 
 Copyright 2023 Kuno Woudt <kuno@frob.nl>
